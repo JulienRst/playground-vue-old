@@ -1,16 +1,16 @@
 .row, .column {
 	display: flex;
 
-	.center {
+	&.center {
 		justify-content: center;
 		align-items: center;
 	}
 
-	.justify-end {
+	&.justify-end {
 		justify-content: flex-end;
 	}
 
-	.align-end {
+	&.align-end {
 		align-items: flex-end;
 	}
 }

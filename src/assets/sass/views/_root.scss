@@ -1,0 +1,67 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #101010;
+  color: white;
+
+  .item-container {
+    cursor: pointer;
+    align-items: center;
+    
+    .item {
+      position: relative;
+
+      &:hover {
+        transition: 0.3s;
+        .title::after {
+          height: 50%;
+        }
+        
+        .class {
+          opacity: 1;
+        }
+      }
+
+      .key {
+        align-self: flex-start;
+      }
+  
+      .title {
+        align-self: center;
+        font-size: 5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0.5rem;
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+        position: relative;
+  
+        &::after {
+          content: attr(data-text);
+          position: absolute;
+          width: 100%;
+          height: 0%;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          color: white;
+          transition: 0.3s;
+          overflow: hidden;
+        }
+      }
+  
+      .class {
+        position: absolute;
+        bottom: 0%;
+        left: 100%;
+        width: 100%;
+        opacity: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: 0.3s;
+      }
+    }
+
+  }
+}
