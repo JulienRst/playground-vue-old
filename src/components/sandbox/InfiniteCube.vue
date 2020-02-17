@@ -53,7 +53,7 @@ export default class InfiniteCubeComponent extends Vue {
 		this.camera = new THREE.PerspectiveCamera(60, this.screenSize.ratio, 0.1, 500);
 		this.renderer = new THREE.WebGLRenderer();
 		// Add Alpha
-		this.renderer.setClearColor(0x151515, 1);
+		this.renderer.setClearColor(0x101010, 1);
 		this.setSize();
 		this.setCamera();
 

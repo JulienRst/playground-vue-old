@@ -1,5 +1,5 @@
 <template>
-	<div class="viewer">
+	<div class="viewer" :class="{ mounted: isMounted }">
 		<component :is="project.component" v-if="project" />
 		<back-button-component />
 	</div>
@@ -15,13 +15,19 @@ import BackButtonComponent from '@/components/BackButton.vue';
 	components: { BackButtonComponent },
 	data: () => {
 		return {
-			project: null
+			project: null,
+			isMounted: false
 		};
 	}
 })
 export default class ViewerView extends Vue {
 	public project!: Project;
+	public isMounted!: boolean;
+
 	public mounted () {
+		window.setTimeout(() => {
+			this.isMounted = true;
+		}, 50);
 		this.init();
 	}
 

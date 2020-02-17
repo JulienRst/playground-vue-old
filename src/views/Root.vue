@@ -28,8 +28,5 @@ import { Component, Vue } from 'vue-property-decorator';
 	}
 })
 export default class RootView extends Vue {
-	public mounted () {
-		console.log('RootView has been properly mounted 2');
-	}
 }
 </script>

@@ -12,11 +12,11 @@ export default class WindowControl {
 		this.updateSize();
 		this.bindedResize = this.updateSize.bind(this);
 
-		window.addEventListener('resize', this.bindedResize);
+		((this.domElement) ? this.domElement : window).addEventListener('resize', this.bindedResize);
 	}
 
 	public onDestroy () {
-		window.removeEventListener('resize', this.bindedResize);
+		((this.domElement) ? this.domElement : window).removeEventListener('resize', this.bindedResize);
 	}
 
 	public screenSize () {

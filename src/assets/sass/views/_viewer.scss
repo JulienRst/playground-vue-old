@@ -1,9 +1,45 @@
 .viewer {
   padding: 2rem;
+  transition: 0.3s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #101010;
+    transition: 0.3s;
+  }
+
+  &.mounted {
+    transition: 0.3s;
+
+    &::after {
+      width: calc(100vw - 4rem);
+      height: calc(100vh - 4rem);
+      top: 2rem;
+      left: 2rem;
+      transition: 0.3s;
+    }
+
+    .render {
+      transition: 0.3s;
+    }
+
+    .back-button {
+      transition-delay: 0.3s;
+      transition-duration: 0.5s;
+      width: 20rem;
+    }
+  }
   
   .render {
     width: calc(100vw - 4rem);
     height: calc(100vh - 4rem);
+    transition: 0.3s;
     position: relative;
     canvas {
       position: absolute;
@@ -18,10 +54,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 20rem;
+    width: 0rem;
     height: 8rem;
     background-color: white;
     cursor: pointer;
+    transition: 0.5s;
 
     .main-stroke {
       position: absolute;

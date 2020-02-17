@@ -34,8 +34,9 @@ export default class TriangleComponent extends Vue {
 
 	public mounted () {
 		console.log('///////////// Mounted');
+		const target: HTMLElement|null = document.querySelector('#triangle-render');
 		// Init Utils
-		this.windowControl = new WindowControl();
+		this.windowControl = new WindowControl(target);
 		this.screenSize = this.windowControl.screenSize();
 		// Init Three
 		this.scene = new THREE.Scene();
@@ -49,7 +50,6 @@ export default class TriangleComponent extends Vue {
 		this.sceneSize.h = this.windowControl.getVisibleHeight(this.camera);
 
 		// Init Dom
-		const target: HTMLElement|null = document.querySelector('#triangle-render');
 		if (target) {
 			target.appendChild(this.renderer.domElement);
 		}
