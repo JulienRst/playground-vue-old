@@ -1,15 +1,18 @@
 <template>
 	<div class="viewer">
 		<component :is="project.component" v-if="project" />
+		<back-button-component />
 	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Project from '@/models/project';
-import { getProjectFromSlug } from '../utils/ProjectData';
+import { getProjectFromSlug } from '@/utils/ProjectData';
+import BackButtonComponent from '@/components/BackButton.vue';
 @Component({
 	name: 'componentName',
+	components: { BackButtonComponent },
 	data: () => {
 		return {
 			project: null

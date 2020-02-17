@@ -51,6 +51,5 @@ export default class WindowControl {
 	private updateSize () {
 		this.width = (this.domElement) ? this.domElement.offsetWidth : window.innerWidth;
 		this.height = (this.domElement) ? this.domElement.offsetHeight : window.innerHeight;
-		console.log(this.width, this.height, this.domElement);
 	}
 }
