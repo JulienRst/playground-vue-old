@@ -2,6 +2,7 @@
 	<div class="viewer" :class="{ mounted: isMounted }">
 		<component :is="project.component" v-if="project" />
 		<back-button-component />
+		<more-info-component />
 	</div>
 </template>
 
@@ -10,9 +11,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import Project from '@/models/project';
 import { getProjectFromSlug } from '@/utils/ProjectData';
 import BackButtonComponent from '@/components/BackButton.vue';
+import MoreInfoComponent from '@/components/MoreInfo.vue';
 @Component({
 	name: 'componentName',
-	components: { BackButtonComponent },
+	components: {
+		BackButtonComponent,
+		MoreInfoComponent
+	},
 	data: () => {
 		return {
 			project: null,

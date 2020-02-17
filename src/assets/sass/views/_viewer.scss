@@ -34,6 +34,12 @@
       transition-duration: 0.5s;
       width: 20rem;
     }
+
+    .more-info {
+      transform: translate(0, 0);
+      transition-delay: 0.3s;
+      transition-duration: 0.5s;
+    }
   }
   
   .render {
@@ -55,34 +61,14 @@
     top: 0;
     left: 0;
     width: 0rem;
-    height: 8rem;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.5s;
+  }
 
-    .main-stroke {
-      position: absolute;
-      height: 1px;
-      width: 50%;
-      background-color: #101010;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .small-stroke {
-      position: absolute;
-      height: 1px;
-      width: 5%;
-      background-color: #101010;
-      top: 50%;
-      left: calc((100% - 50%) / 2);
-      transform-origin: left;
-      transform: rotate(45deg);
-
-      &:nth-child(2) {
-        transform: rotate(-45deg);
-      }
-    }
+  .more-info {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(100%, 100%);
+    transition-delay: 0.3s;
+    transition-duration: 0.5s;
   }
 }
