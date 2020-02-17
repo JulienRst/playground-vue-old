@@ -3,7 +3,12 @@ export default class WindowControl {
 	private height: number = 0;
 	private bindedResize: any;
 
-	public constructor () {
+	private domElement!: HTMLElement;
+
+	public constructor (domElement: HTMLElement|null = null) {
+		if (domElement) {
+			this.domElement = domElement;
+		}
 		this.updateSize();
 		this.bindedResize = this.updateSize.bind(this);
 
@@ -44,7 +49,8 @@ export default class WindowControl {
 	}
 
 	private updateSize () {
-		this.width = window.innerWidth;
-		this.height = window.innerHeight;
+		this.width = (this.domElement) ? this.domElement.offsetWidth : window.innerWidth;
+		this.height = (this.domElement) ? this.domElement.offsetHeight : window.innerHeight;
+		console.log(this.width, this.height, this.domElement);
 	}
 }

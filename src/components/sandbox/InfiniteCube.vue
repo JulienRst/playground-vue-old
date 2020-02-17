@@ -1,5 +1,5 @@
 <template>
-	<div id="infinite-cube-render"></div>
+	<div class="render" id="infinite-cube-render"></div>
 </template>
 
 <script lang="ts">
@@ -44,8 +44,9 @@ export default class InfiniteCubeComponent extends Vue {
 
 	public mounted () {
 		console.log('///////////// Mounted');
+		const target: HTMLElement|null = document.querySelector('#infinite-cube-render');
 		// Init Utils
-		this.windowControl = new WindowControl();
+		this.windowControl = new WindowControl(target);
 		this.screenSize = this.windowControl.screenSize();
 		// Init Three
 		this.scene = new THREE.Scene();
@@ -55,11 +56,8 @@ export default class InfiniteCubeComponent extends Vue {
 		this.renderer.setClearColor(0x151515, 1);
 		this.setSize();
 		this.setCamera();
-		this.sceneSize.w = this.windowControl.getVisibleWidth(this.camera);
-		this.sceneSize.h = this.windowControl.getVisibleHeight(this.camera);
 
 		// Init Dom
-		const target: HTMLElement|null = document.querySelector('#infinite-cube-render');
 		if (target) {
 			target.appendChild(this.renderer.domElement);
 		}

@@ -1,5 +1,5 @@
 <template>
-	<div id="triangle-render"></div>
+	<div class="render" id="triangle-render"></div>
 </template>
 
 <script lang="ts">
@@ -118,10 +118,3 @@ export default class TriangleComponent extends Vue {
 	}
 }
 </script>
-
-<style lang="scss">
-	canvas {
-		width: 100%;
-		height: 100%;
-	}
-</style>

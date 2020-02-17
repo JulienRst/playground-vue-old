@@ -1,5 +1,5 @@
 <template>
-	<div class="ctn-viewer">
+	<div class="viewer">
 		<component :is="project.component" v-if="project" />
 	</div>
 </template>
