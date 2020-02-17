@@ -3,7 +3,9 @@
     height: 8rem;
     background-color: white;
     cursor: pointer;
-    transition: 0.5s;
+    position: relative;
+    transform: translate(0, 0);
+    transition: width 0.3s 0.5s, transform 0.5s;
 
     .main-stroke {
       position: absolute;
@@ -28,5 +30,10 @@
       &:nth-child(2) {
         transform: rotate(-45deg);
       }
+    }
+
+    &:hover {
+      transform: translate(-2rem, 0rem);
+      transition: 0.5s;
     }
   }
