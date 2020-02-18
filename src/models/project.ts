@@ -6,11 +6,13 @@ export default class Project {
 	public name: string;
 	public component: Component;
 	public slug: string;
+	public needTitle: boolean;
 
-	constructor (id: number, name: string, component: Component) {
+	constructor (id: number, name: string, component: Component, needTitle: boolean = true) {
 		this.id = id;
 		this.name = name;
 		this.component = component;
 		this.slug = slug(name).toLowerCase();
+		this.needTitle = needTitle;
 	}
 }
