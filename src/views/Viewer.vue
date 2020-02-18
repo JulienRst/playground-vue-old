@@ -1,6 +1,7 @@
 <template>
 	<div class="viewer" :class="{ mounted: isMounted }">
 		<component :is="project.component" v-if="project" />
+		<h1 v-if="project && project.needTitle">{{ project.name }}</h1>
 		<back-button-component />
 		<more-info-component />
 	</div>
@@ -47,3 +48,17 @@ export default class ViewerView extends Vue {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+h1 {
+	font-family: 'Titilium';
+	position: absolute;
+	font-size: 5rem;
+	text-transform: uppercase;
+	color: white;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 8000;
+}
+</style>
