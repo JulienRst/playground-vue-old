@@ -9,7 +9,7 @@
 
     .main-stroke {
       position: absolute;
-      height: 1px;
+      height: 4px;
       width: 50%;
       background-color: #101010;
       top: 50%;
@@ -19,16 +19,16 @@
 
     .small-stroke {
       position: absolute;
-      height: 1px;
-      width: 5%;
+      height: 4px;
+      width: 8%;
       background-color: #101010;
       top: 50%;
       left: calc((100% - 50%) / 2);
       transform-origin: left;
-      transform: rotate(45deg);
+      transform: translate(-4px, -1px) rotate(45deg);
 
       &:nth-child(2) {
-        transform: rotate(-45deg);
+        transform: translate(-4px, 1px) rotate(-45deg);
       }
     }
 
