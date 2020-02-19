@@ -26,10 +26,11 @@ export default class TextRenderingComponent extends Vue {
 	private windowControl!: WindowControl;
 	private screenSize!: { w: number, h: number, ratio: number };
 	private sceneSize: { w: number, h: number } = { w: 0, h: 0 };
-	private framerate = 1000 / 20;
+	private framerate = 1000 / 15;
 	private fontLoader = new THREE.FontLoader();
 	private font!: THREE.Font;
 	private composer!: EffectComposer;
+	private lastUpdate: boolean = false;
 	// Props
 	@Prop({ required: true })
 	private text!: string;
@@ -78,6 +79,8 @@ export default class TextRenderingComponent extends Vue {
 
 		const glitchPass = new GlitchPass();
 		glitchPass.goWild = true;
+		glitchPass.curF = 0;
+		glitchPass.randX = 0;
 		this.composer.addPass(glitchPass);
 	}
 
@@ -118,6 +121,7 @@ export default class TextRenderingComponent extends Vue {
 			this.scene.add(strokeText);
 		} else {
 			this.scene.remove(this.scene.children[0]);
+			this.lastUpdate = true;
 		}
 	}
 
@@ -125,7 +129,10 @@ export default class TextRenderingComponent extends Vue {
 		if (this.scene.children.length > 0) {
 			this.composer.render();
 		} else {
-			this.renderer.render(this.scene, this.camera);
+			if (this.lastUpdate) {
+				this.renderer.render(this.scene, this.camera);
+				this.lastUpdate = false;
+			}
 		}
 		this.timeout = window.setTimeout(() => { this.animate(); }, this.framerate);
 	}
