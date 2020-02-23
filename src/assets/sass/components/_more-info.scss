@@ -96,3 +96,19 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .more-info {
+    width: 4rem;
+    height: 4rem;
+
+    .button {
+      width: 4rem;
+      height: 4rem;
+      .small-stroke {
+        width: 50%;
+        height: 2px;
+      }
+    }
+  }
+}

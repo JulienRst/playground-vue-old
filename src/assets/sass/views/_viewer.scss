@@ -73,3 +73,17 @@
     transition-duration: 0.5s;
   }
 }
+
+@media (max-width: 600px) {
+  .viewer {
+    padding: 1rem;
+    &::after, .render {
+      width: calc(100vw - 2rem);
+      height: calc(100vh - 2rem);
+    }
+
+    &.mounted .back-button {
+      width: 10rem;
+    }
+  }
+}

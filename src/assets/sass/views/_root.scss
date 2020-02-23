@@ -23,12 +23,14 @@
   .item-container {
     cursor: pointer;
     align-items: flex-start;
+    outline: none;
     
     .item {
       position: relative;
       opacity: 0;
       transform: translateX(-200px);
       transition: 0.3s;
+      outline: none;
 
       &:hover {
         transition: 0.3s;
