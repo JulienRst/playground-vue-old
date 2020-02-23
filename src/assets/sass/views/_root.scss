@@ -7,7 +7,7 @@
 
   .item-container {
     cursor: pointer;
-    align-items: center;
+    align-items: flex-start;
     
     .item {
       position: relative;
@@ -66,6 +66,11 @@
         transition: 0.3s;
       }
     }
+  }
 
+  .about-me {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 }

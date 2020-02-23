@@ -1,6 +1,5 @@
 <template>
   <div class="page root row center">
-		<text-rendering-component :text="computedText" />
 		<div class="item-container column">
 			<router-link
 				:to="{ name: 'Viewer', params: { slug: project.slug }}"
@@ -15,18 +14,19 @@
 				<div class="class">see more</div>
 			</router-link>
 		</div>
+		<about-me-component />
 	</div>
 </template>
 
 <script lang="ts">
 import projects from '@/utils/ProjectData';
 import { Component, Vue } from 'vue-property-decorator';
-import TextRenderingComponent from '@/components/TextRendering.vue';
+import AboutMeComponent from '@/components/AboutMe.vue';
 
 @Component({
 	name: 'RootView',
 	components: {
-		TextRenderingComponent
+		AboutMeComponent
 	},
 	data: () => {
 		return {
