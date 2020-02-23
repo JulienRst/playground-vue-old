@@ -93,3 +93,18 @@
     transform: translateX(calc(100% + 1px));
   }
 }
+
+@media (max-width: 780px) {
+  div.root.center {
+    align-items: flex-start;
+    padding: 2rem;
+    .item-container {
+      .item {
+        .title {
+          font-size: 8vw;
+          line-height: 8vw;
+        }
+      }
+    }
+  }
+}
