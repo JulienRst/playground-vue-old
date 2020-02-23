@@ -46,13 +46,13 @@ export default class App extends Vue {
 	public mounted () {
 		this.interval = window.setInterval(() => {
 			if (this.loadPercent < 100) {
-				this.loadPercent ++;
+				this.loadPercent += 3;
 			} else {
 				window.clearInterval(this.interval);
 				this.loadEnd = true;
 				window.setTimeout(() => { this.endOfAnimation = true; }, 500);
 			}
-		}, 10);
+		}, 5);
 	}
 
 	get percent () {
