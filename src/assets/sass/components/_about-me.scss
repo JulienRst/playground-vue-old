@@ -5,4 +5,14 @@
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  position: relative;
+  z-index: 10;
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateX(10px);
+    transition: 0.3s;
+  }
 }
