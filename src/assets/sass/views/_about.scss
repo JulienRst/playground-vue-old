@@ -1,0 +1,57 @@
+.about {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #101010;
+  color: white;
+  padding-top: 4rem;
+  padding-left: 10rem;
+
+  article {
+    max-width: 350px;
+    width: 100%;
+    padding-bottom: 1rem;
+    
+    p {
+      margin-top: 0;
+    }
+
+    .ctn-socials {
+      align-items: center;
+      a {
+        display: block;
+        img {
+          width: 3rem;
+        }
+
+        &:first-child {
+          margin-right: 1rem;
+          img {
+            width: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10rem;
+    height: 4rem;
+
+    .main-stroke {
+      height: 2px;
+    }
+
+    .small-stroke {
+      height: 2px;
+      transform: translate(-2px, -0.5px) rotate(45deg);
+
+      &:nth-child(2) {
+        transform: translate(-2px, 0.5px) rotate(-45deg);
+      }
+    }
+  }
+}

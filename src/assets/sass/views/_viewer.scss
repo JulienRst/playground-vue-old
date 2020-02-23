@@ -1,6 +1,9 @@
 .viewer {
   padding: 2rem;
   transition: 0.3s;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 
   &::after {
     content: '';

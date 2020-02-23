@@ -1,9 +1,9 @@
 <template>
 	<div class="viewer" :class="{ mounted: isMounted }">
 		<component :is="project.component" v-if="project" />
-		<h1 v-if="project && project.needTitle">{{ project.name }}</h1>
+		<h1 v-if="project && project.needTitle && !$refs.moreinfo.open">{{ project.name }}</h1>
 		<back-button-component />
-		<more-info-component />
+		<more-info-component :project="project" ref="moreinfo" />
 	</div>
 </template>
 
@@ -51,6 +51,7 @@ export default class ViewerView extends Vue {
 
 <style lang="scss" scoped>
 h1 {
+	text-align: center;
 	font-family: 'Titilium';
 	position: absolute;
 	font-size: 5rem;

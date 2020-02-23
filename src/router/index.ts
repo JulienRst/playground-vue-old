@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RootView from '@/views/Root.vue';
 import ViewerView from '@/views/Viewer.vue';
+import AboutView from '@/views/About.vue';
 
 Vue.use(VueRouter);
 
@@ -12,9 +13,14 @@ const routes = [
 		path: '/'
 	},
 	{
+		name: 'About',
+		component: AboutView,
+		path: '/about'
+	},
+	{
 		name: 'Viewer',
 		component: ViewerView,
-		path: '/:slug'
+		path: '/sandbox/:slug'
 	}
 ];
 

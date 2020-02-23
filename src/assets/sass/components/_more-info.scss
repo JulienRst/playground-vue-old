@@ -1,4 +1,27 @@
 .more-info {
+  width: 6rem;
+  height: 6rem;
+  transition: 0.3s;
+  background-color: rgba($color-black, 0.8);
+  z-index: 10000;
+  &.open {
+    width: 50vw;
+    height: 100vh;
+    transition: 0.3s;
+
+    .button {
+      .small-stroke {
+        transform: translate(-50%, -50%)rotate(45deg);
+        transition: 0.3s;
+
+        &:nth-child(1) {
+          transform: translate(-50%, -50%) rotate(135deg);
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
   .button {
     width: 6rem;
     height: 6rem;
@@ -15,9 +38,60 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transition: 0.3s;
 
       &:nth-child(1) {
         transform: translate(-50%, -50%) rotate(90deg);
+        transition: 0.3s;
+      }
+    }
+  }
+
+  .ctn-informations {
+    color: white;
+    padding: 1rem;
+
+    .title {
+      font-family: $font-title;
+      font-size: 3rem;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    .block {
+      padding: 1rem 0;
+
+      .label {
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+
+      .items {
+        .item {
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
+
+          a {
+            font-style: italic;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .source {
+      margin-top: 8rem;
+      a {
+        img {
+          width: 6rem;
+        }
       }
     }
   }

@@ -5,12 +5,30 @@
   background-color: #101010;
   color: white;
 
+  &.active {
+    .item-container {
+      .item {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.3s;
+      }
+    }
+
+    .about-me {
+      transform: translateX(0);
+      transition: 0.3s;
+    }
+  }
+
   .item-container {
     cursor: pointer;
     align-items: flex-start;
     
     .item {
       position: relative;
+      opacity: 0;
+      transform: translateX(-200px);
+      transition: 0.3s;
 
       &:hover {
         transition: 0.3s;
@@ -72,5 +90,6 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    transform: translateX(calc(100% + 1px));
   }
 }

@@ -1,5 +1,5 @@
 <template>
-	<div class="about-me">
+	<div class="about-me" @click="navigation">
 			About me
 		</div>
 </template>
@@ -11,8 +11,9 @@ import { Component, Vue } from 'vue-property-decorator';
 	name: 'AboutMeComponent'
 })
 export default class AboutMeComponent extends Vue {
-	public mounted () {
-		console.log('AboutMeComponent has been properly mounted');
+
+	public navigation () {
+		this.$emit('navigation');
 	}
 }
 </script>
