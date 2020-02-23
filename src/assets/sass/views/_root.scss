@@ -87,7 +87,7 @@
   }
 
   .about-me {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     transform: translateX(calc(100% + 1px));
@@ -103,6 +103,7 @@
         .title {
           font-size: 8vw;
           line-height: 8vw;
+          -webkit-text-stroke: 1.5px white;
         }
       }
     }
