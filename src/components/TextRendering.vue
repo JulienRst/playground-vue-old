@@ -9,9 +9,9 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import * as THREE from 'three';
 import WindowControl from '@/utils/WindowControl';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+
+import vs from '@/models/sandbox/shaders/glitch.vs';
+import fs from '@/models/sandbox/shaders/glitch.fs';
 
 @Component({
 	name: 'TextRenderingComponent'
@@ -29,8 +29,8 @@ export default class TextRenderingComponent extends Vue {
 	private framerate = 1000 / 15;
 	private fontLoader = new THREE.FontLoader();
 	private font!: THREE.Font;
-	private composer!: EffectComposer;
 	private lastUpdate: boolean = false;
+	private material!: THREE.RawShaderMaterial;
 	// Props
 	@Prop({ required: true })
 	private text!: string;
@@ -43,6 +43,7 @@ export default class TextRenderingComponent extends Vue {
 	}
 
 	public mounted () {
+		console.log('///////////// MOUNTED');
 		// Init Utils
 		this.windowControl = new WindowControl();
 		this.screenSize = this.windowControl.screenSize();
@@ -73,15 +74,6 @@ export default class TextRenderingComponent extends Vue {
 		this.fontLoader.load('fonts/Titilium_Black.json', (font) => {
 			this.font = font;
 		});
-
-		this.composer = new EffectComposer(this.renderer );
-		this.composer.addPass( new RenderPass(this.scene, this.camera));
-
-		const glitchPass = new GlitchPass();
-		glitchPass.goWild = true;
-		glitchPass.curF = 0;
-		glitchPass.randX = 0;
-		this.composer.addPass(glitchPass);
 	}
 
 	private displayText (text: string) {
@@ -94,11 +86,6 @@ export default class TextRenderingComponent extends Vue {
 			tmpGeometry.computeBoundingBox();
 			const xMid = - 0.5 * (tmpGeometry.boundingBox.max.x - tmpGeometry.boundingBox.min.x);
 			const yMid = - 0.5 * (tmpGeometry.boundingBox.max.y - tmpGeometry.boundingBox.min.y);
-
-			const matDark = new THREE.MeshBasicMaterial( {
-				color,
-				side: THREE.DoubleSide
-			});
 
 			shapes.forEach((shape) => {
 				if (shape.holes && shape.holes.length > 0) {
@@ -115,7 +102,7 @@ export default class TextRenderingComponent extends Vue {
 				const points = shape.getPoints().map((point) => new THREE.Vector3(point.x, point.y, 0));
 				const geometry = SVGLoader.pointsToStroke(points, style, 12, 0);
 				geometry.translate( xMid, yMid, 0 );
-				const strokeMesh = new THREE.Mesh(geometry, matDark);
+				const strokeMesh = new THREE.Mesh(geometry, this.material);
 				strokeText.add(strokeMesh);
 			});
 			this.scene.add(strokeText);
@@ -126,13 +113,9 @@ export default class TextRenderingComponent extends Vue {
 	}
 
 	private animate () {
-		if (this.scene.children.length > 0) {
-			this.composer.render();
-		} else {
-			if (this.lastUpdate) {
-				this.renderer.render(this.scene, this.camera);
-				this.lastUpdate = false;
-			}
+		if (this.lastUpdate) {
+			this.renderer.render(this.scene, this.camera);
+			this.lastUpdate = false;
 		}
 		this.timeout = window.setTimeout(() => { this.animate(); }, this.framerate);
 	}
