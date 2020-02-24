@@ -9,7 +9,7 @@
 
   &.mounted {
     section {
-      width: 350px;
+      width: 100%;
       transition: 0.3s;
       overflow: hidden;
     }
@@ -27,6 +27,7 @@
   }
 
   section {
+    max-width: 350px;
     width: 0px;
     transition: 0.3s;
   }
