@@ -1,6 +1,8 @@
 <template>
 	<div class="viewer" :class="{ mounted: isMounted }">
-		<component :is="project.component" v-if="project" />
+		<div class="ctn-render">
+			<component :is="project.component" v-if="project" />
+		</div>
 		<h1 v-if="project && project.needTitle && !$refs.moreinfo.open">{{ project.name }}</h1>
 		<back-button-component @navigation="goToRoot" />
 		<more-info-component :project="project" ref="moreinfo" />
