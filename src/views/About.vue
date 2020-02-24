@@ -43,7 +43,7 @@ export default class AboutView extends Vue {
 	public mounted () {
 		window.setTimeout(() => {
 			this.isMounted = true;
-		}, 10);
+		}, 50);
 	}
 
 	public goToRoot () {
