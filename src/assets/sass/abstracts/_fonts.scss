@@ -7,6 +7,7 @@
         url('assets/fonts/NotoSans/NotoSans.ttf') format('truetype'),
         url('assets/fonts/NotoSans/NotoSans.svg#NotoSans') format('svg');
     font-weight: normal;
+    font-display: fallback;
     font-style: normal;
 }
 
@@ -19,6 +20,7 @@
         url('assets/fonts/NotoSans/NotoSans-BoldItalic.ttf') format('truetype'),
         url('assets/fonts/NotoSans/NotoSans-BoldItalic.svg#NotoSans-BoldItalic') format('svg');
     font-weight: bold;
+    font-display: fallback;
     font-style: italic;
 }
 
@@ -31,6 +33,7 @@
         url('assets/fonts/NotoSans/NotoSans-Italic.ttf') format('truetype'),
         url('assets/fonts/NotoSans/NotoSans-Italic.svg#NotoSans-Italic') format('svg');
     font-weight: normal;
+    font-display: fallback;
     font-style: italic;
 }
 
@@ -43,6 +46,7 @@
         url('assets/fonts/NotoSans/NotoSans-Bold.ttf') format('truetype'),
         url('assets/fonts/NotoSans/NotoSans-Bold.svg#NotoSans-Bold') format('svg');
     font-weight: bold;
+    font-display: fallback;
     font-style: normal;
 }
 
@@ -55,5 +59,6 @@
         url('assets/fonts/TitiliumBlack/TitilliumWeb-Black.ttf') format('truetype'),
         url('assets/fonts/TitiliumBlack/TitilliumWeb-Black.svg#TitilliumWeb-Black') format('svg');
     font-weight: normal;
+    font-display: fallback;
     font-style: normal;
 }

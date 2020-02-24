@@ -1,33 +1,31 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RootView from '@/views/Root.vue';
-import ViewerView from '@/views/Viewer.vue';
-import AboutView from '@/views/About.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		name: 'Root',
+		// component: () => import(/* webpackChunkName: "root" */ '@/views/Root.vue'),
 		component: RootView,
 		path: '/'
 	},
 	{
 		name: 'About',
-		component: AboutView,
+		component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
 		path: '/about'
 	},
 	{
 		name: 'Viewer',
-		component: ViewerView,
+		component: () => import(/* webpackChunkName: "viewer" */ '@/views/Viewer.vue'),
 		path: '/sandbox/:slug'
 	}
 ];
 
 const router = new VueRouter({
 	mode: 'history',
-	// base: process.env.BASE_URL,
-	routes,
+	routes
 });
 
 export default router;
