@@ -56,10 +56,8 @@ export default class LavaBall {
 		if (this.mesh) {
 			this.geometry.verticesNeedUpdate = true;
 			const d = this.impact / this.precision;
-			// const deplacement = new THREE.Vector3(0, 0, 0);
 			this.deformations.forEach((deformation) => {
 				deformation.computeDeformation();
-				// deplacement.add(deformation.peak);
 			});
 
 			this.geometry.vertices.forEach((vertice, key) => {
@@ -75,7 +73,6 @@ export default class LavaBall {
 			this.mesh.rotation.x += (0.001 + Math.random() / 100);
 			this.mesh.rotation.y += (0.001 + Math.random() / 100);
 			this.mesh.rotation.z += (0.001 + Math.random() / 100);
-			// this.mesh.position.add(new THREE.Vector3(0.001 * deplacement.x, 0.001 * deplacement.y, 0.001 * deplacement.z));
 		}
 	}
 }

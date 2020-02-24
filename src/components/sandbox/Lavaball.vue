@@ -52,7 +52,7 @@ export default class App extends Vue {
 
 	public beforeDestroy () {
 		if (this.timeout) {
-			window.cancelAnimationFrame(this.timeout);
+			window.clearTimeout(this.timeout);
 		}
 	}
 
@@ -81,7 +81,7 @@ export default class App extends Vue {
 		});
 
 		this.renderer.render(this.scene, this.camera);
-		this.timeout = requestAnimationFrame(this.animate);
+		this.timeout = window.setTimeout(() => { this.animate(); }, 1000 / 30);
 	}
 }
 </script>
