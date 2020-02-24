@@ -43,7 +43,6 @@ export default class InfiniteCubeComponent extends Vue {
 	private frameRate = 1000 / 30;
 
 	public mounted () {
-		console.log('///////////// Mounted');
 		const target: HTMLElement|null = document.querySelector('#infinite-cube-render');
 		// Init Utils
 		this.windowControl = new WindowControl(target);

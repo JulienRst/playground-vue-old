@@ -33,7 +33,6 @@ export default class TriangleComponent extends Vue {
 	private trianges: THREE.Line[] = [];
 
 	public mounted () {
-		console.log('///////////// Mounted');
 		const target: HTMLElement|null = document.querySelector('#triangle-render');
 		// Init Utils
 		this.windowControl = new WindowControl(target);
