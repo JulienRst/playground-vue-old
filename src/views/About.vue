@@ -1,22 +1,24 @@
 <template>
-	<div class="page about">
+	<div class="page about" :class="{ mounted: isMounted }">
 		<back-button-component />
-		<article>
-			<p>Hi, my name is Julien Rousset and i'm a french <strong>creative developper</strong>, currently based in Paris.</p>
-			<p>Working as a <strong>Confirmed Front Developer</strong> with <strong>OnePoint</strong>.</p>
-			<p>I'm looking for new opportunity to use <strong>3D</strong> and <strong>Web</strong> together into <strong>neat experiences</strong>.</p>
-		</article>
-		<article>
-			<p>julien.rousset01[at]gmail[dot]com</p>
-			<div class="ctn-socials row">
-				<a href="https://twitter.com/JulienRst">
-					<img :src="twitter" alt="twitter icon">
-				</a>
-				<a href="https://github.com/JulienRst">
-					<img :src="github" alt="github icon">
-				</a>
-			</div>
-		</article>
+		<section>
+			<article>
+				<p>Hi, my name is Julien Rousset and i'm a french <strong>creative developper</strong>, currently based in Paris.</p>
+				<p>Working as a <strong>Confirmed Front Developer</strong> with <strong>OnePoint</strong>.</p>
+				<p>I'm looking for new opportunity to use <strong>3D</strong> and <strong>Web</strong> together into <strong>neat experiences</strong>.</p>
+			</article>
+			<article>
+				<p>julien.rousset01[at]gmail[dot]com</p>
+				<div class="ctn-socials row">
+					<a href="https://twitter.com/JulienRst">
+						<img :src="twitter" alt="twitter icon">
+					</a>
+					<a href="https://github.com/JulienRst">
+						<img :src="github" alt="github icon">
+					</a>
+				</div>
+			</article>
+		</section>
 	</div>
 </template>
 
@@ -36,8 +38,12 @@ import BackButtonComponent from '@/components/BackButton.vue';
 	}
 })
 export default class AboutView extends Vue {
+	public isMounted: boolean = false;
+
 	public mounted () {
-		console.log('AboutView has been properly mounted');
+		window.setTimeout(() => {
+			this.isMounted = true;
+		}, 10);
 	}
 }
 </script>
