@@ -55,10 +55,6 @@ export default class MoreInfoComponent extends Vue {
 	@Prop({ required: true })
 	public project!: Project;
 
-	public mounted () {
-		console.log('MoreInfoComponent has been properly mounted');
-	}
-
 	public toggleOpen () {
 		this.open = !this.open;
 	}
