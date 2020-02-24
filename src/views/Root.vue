@@ -8,6 +8,8 @@
 				:key="project.id"
 				@mouseenter="triggerHoverIn(key)"
 				@mouseleave="triggerHoverOut()"
+				role="link"
+				:tabindex="key"
 			>
 				<div class="key">0{{ project.id }}</div>
 				<div class="title" :data-text="project.name">{{ project.name }}</div>

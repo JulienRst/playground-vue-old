@@ -41,9 +41,9 @@ export default class TriangleComponent extends Vue {
 		// Init Three
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera(60, this.screenSize.ratio, 0.1, 500);
-		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 		// Add Alpha
-		this.renderer.setClearColor(0x151515, 1);
+		this.renderer.setClearColor(0xffffff, 0);
 		this.setSize();
 		this.setCamera();
 		this.sceneSize.w = this.windowControl.getVisibleWidth(this.camera);
