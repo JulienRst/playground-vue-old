@@ -67,14 +67,16 @@
 }
 
 @media (max-width: 600px) {
-  .viewer {
+  .viewer.mounted {
     padding: 1rem;
-    &.mounted::after, .render {
-      width: calc(100vw - 2rem);
-      height: calc(100vh - 2rem);
+    .ctn-render {
+      .render {
+        width: calc(100vw - 2rem);
+        height: calc(100vh - 2rem);
+      }
     }
 
-    &.mounted .back-button {
+    .back-button {
       width: 10rem;
     }
   }
