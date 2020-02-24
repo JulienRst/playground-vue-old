@@ -2,7 +2,7 @@
 	<div class="viewer" :class="{ mounted: isMounted }">
 		<component :is="project.component" v-if="project" />
 		<h1 v-if="project && project.needTitle && !$refs.moreinfo.open">{{ project.name }}</h1>
-		<back-button-component />
+		<back-button-component @navigation="goToRoot" />
 		<more-info-component :project="project" ref="moreinfo" />
 	</div>
 </template>
@@ -33,8 +33,15 @@ export default class ViewerView extends Vue {
 	public mounted () {
 		window.setTimeout(() => {
 			this.isMounted = true;
-		}, 50);
+		}, 10);
 		this.init();
+	}
+
+	public goToRoot () {
+		this.isMounted = false;
+		window.setTimeout(() => {
+			this.$router.push({ name: 'Root' });
+		}, 350);
 	}
 
 	private init () {

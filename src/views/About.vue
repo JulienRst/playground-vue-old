@@ -1,6 +1,6 @@
 <template>
 	<div class="page about" :class="{ mounted: isMounted }">
-		<back-button-component />
+		<back-button-component @navigation="goToRoot"/>
 		<section>
 			<article>
 				<p>Hi, my name is Julien Rousset and i'm a french <strong>creative developper</strong>, currently based in Paris.</p>
@@ -44,6 +44,13 @@ export default class AboutView extends Vue {
 		window.setTimeout(() => {
 			this.isMounted = true;
 		}, 10);
+	}
+
+	public goToRoot () {
+		this.isMounted = false;
+		window.setTimeout(() => {
+			this.$router.push({ name: 'Root' });
+		}, 350);
 	}
 }
 </script>
