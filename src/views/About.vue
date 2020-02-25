@@ -4,7 +4,7 @@
 		<section>
 			<article>
 				<p>Hi, my name is Julien Rousset and i'm a french <strong>Creative Developer</strong>, currently based in Paris.</p>
-				<p>Working as a <strong>Experienced Front End Developer</strong> at <strong>onepoint</strong>.</p>
+				<p>Working as an <strong>Experienced Front End Developer</strong> at <strong>onepoint</strong>.</p>
 				<p>I'm looking for new opportunity to use <strong>3D</strong> and <strong>Web</strong> together into <strong>neat experiences</strong>.</p>
 			</article>
 			<article>
