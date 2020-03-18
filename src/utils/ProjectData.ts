@@ -3,6 +3,7 @@ import InfiniteCubeComponent from '@/components/sandbox/InfiniteCube.vue';
 import TriangleComponent from '@/components/sandbox/Triangle.vue';
 import SolutionComponent from '@/components/sandbox/Solution.vue';
 import NormalVertexPartyComponent from '@/components/sandbox/NormalVertexParty.vue';
+import TunnelComponent from '@/components/sandbox/Tunnel.vue';
 
 const projects = [
 	new Project(
@@ -54,6 +55,21 @@ const projects = [
 			technos: ['Three.js', 'Vue.js'],
 			inspirations: [],
 			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/NormalVertexParty.vue'
+		},
+		false
+	),
+	new Project(
+		5,
+		'Tunnel',
+		TunnelComponent,
+		{
+			date: 'March 2020',
+			technos: ['Three.js', 'Vue.js'],
+			inspirations: [{
+				link: 'https://tympanus.net/Development/InfiniteTubes/',
+				name: 'Codrops'
+			}],
+			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/Tunnel.vue'
 		},
 		false
 	)
