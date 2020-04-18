@@ -23,7 +23,7 @@ export default class TunnelComponent extends Vue {
 	private mouseControl!: MouseControl;
 	private screenSize!: { w: number, h: number, ratio: number };
 	// Settings
-	private frameRate = 1000 / 30;
+	private frameRate = 1000 / 24;
 	private speed = 0.1;
 	// Tube
 	private curve!: THREE.CatmullRomCurve3;
@@ -45,7 +45,7 @@ export default class TunnelComponent extends Vue {
 			this.scene = new THREE.Scene();
 			this.camera = new THREE.PerspectiveCamera(2, this.screenSize.ratio, 0.1, 100000);
 			this.renderer = new THREE.WebGLRenderer({ antialias: true });
-			this.renderer.setClearColor(0x222222);
+			this.renderer.setClearColor(0x000000);
 			// Add Alpha
 			this.setSize();
 			this.setCamera();
@@ -73,7 +73,7 @@ export default class TunnelComponent extends Vue {
 		const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
 		this.scene.add(light);
 		this.scene.add(directionalLight);
-		this.scene.fog = new THREE.Fog(0x222222, 0.1, 2);
+		this.scene.fog = new THREE.Fog(0x000000, 0.1, 2);
 	}
 
 	private initTunnel () {
@@ -113,7 +113,7 @@ export default class TunnelComponent extends Vue {
 	private calculate () {
 		// Update material offset
 		if (this.tubeMaterial && this.tubeMaterial.map) {
-			this.tubeMaterial.map.offset.x += this.speed;
+			this.tubeMaterial.map.offset.x += (this.mouseControl.isPressed()) ? -3 * this.speed : this.speed;
 		}
 		// Update geometry
 		let index = 0;
