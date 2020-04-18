@@ -60,10 +60,10 @@ const projects = [
 	),
 	new Project(
 		5,
-		'Tunnel',
+		'Square Tunnel',
 		TunnelComponent,
 		{
-			date: 'March 2020',
+			date: 'April 2020',
 			technos: ['Three.js', 'Vue.js'],
 			inspirations: [{
 				link: 'https://tympanus.net/Development/InfiniteTubes/',
