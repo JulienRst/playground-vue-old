@@ -7,11 +7,12 @@ export interface CarLightsOptions {
 	roadWidth: number;
 	roadSections: number;
 	roadDepth: number;
+	speed: number;
 }
 
 export default class CarLights {
 	public mesh!: THREE.Mesh;
-	private options: CarLightsOptions;
+	public options: CarLightsOptions;
 
 	constructor (options: CarLightsOptions) {
 		this.options = options;
@@ -30,7 +31,10 @@ export default class CarLights {
 			fragmentShader,
 			vertexShader,
 			uniforms: {
-				uColor: new THREE.Uniform(this.options.color)
+				uColor: new THREE.Uniform(this.options.color),
+				uTime: new THREE.Uniform(0),
+				uSpeed: new THREE.Uniform(this.options.speed),
+				uTravelLength: new THREE.Uniform(this.options.roadDepth)
 			}
 		});
 
@@ -49,7 +53,7 @@ export default class CarLights {
 
 			const offsetX = 0.5 * Math.random();
 			const offsetY = radius * 1.3;
-			const offsetZ = - Math.random() * this.options.roadDepth / 2;
+			const offsetZ = - Math.random() * this.options.roadDepth;
 
 			aOffset.push(sectionX - carWidth / 2 - offsetX);
 			aOffset.push(offsetY);
@@ -81,5 +85,10 @@ export default class CarLights {
 			'aMetrics',
 			new THREE.InstancedBufferAttribute(new Float32Array(aMetrics), 2, false)
 		);
+	}
+
+	public update (t: number): void {
+		(this.mesh.material as THREE.ShaderMaterial).uniforms.uTime.value = t;
+		(this.mesh.material as THREE.ShaderMaterial).uniformsNeedUpdate = true;
 	}
 }

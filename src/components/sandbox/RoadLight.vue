@@ -22,13 +22,15 @@ export default class RoadLight extends Vue {
 	private windowControl!: WindowControl;
 	private screenSize!: { w: number, h: number, ratio: number };
 	private framerate = 1000 / 25;
+	private time = 0;
 	// Models
 	private road!: Road;
 	private leftLights!: CarLights;
 	private rightLights!: CarLights;
 	// Params
-	private roadWidth = 20;
+	private roadWidth = 40;
 	private roadDepth = 400;
+	private numberOfLights = 40;
 	private gutter = 2;
 
 
@@ -61,8 +63,8 @@ export default class RoadLight extends Vue {
 	}
 
 	private setCamera () {
-		this.camera.position.set(0, 10, 10);
-		this.camera.lookAt(0, 0, -1000);
+		this.camera.position.set(0, 10, this.roadDepth / 3);
+		this.camera.lookAt(0, 0, 0);
 	}
 
 	private setSize () {
@@ -79,18 +81,20 @@ export default class RoadLight extends Vue {
 
 	private initCarLights () {
 		this.leftLights = new CarLights({
-			n: 40,
+			n: this.numberOfLights,
 			roadWidth: this.roadWidth,
 			roadDepth: this.roadDepth,
 			roadSections: 6,
-			color: new THREE.Color(0xFAFAFA)
+			color: new THREE.Color(0xFAFAFA),
+			speed: -80
 		});
 		this.rightLights = new CarLights({
-			n: 40,
+			n: this.numberOfLights,
 			roadWidth: this.roadWidth,
 			roadDepth: this.roadDepth,
 			roadSections: 6,
-			color: new THREE.Color(0xFF102A)
+			color: new THREE.Color(0xFF102A),
+			speed: 80
 		});
 		this.leftLights.init();
 		this.rightLights.init();
@@ -108,13 +112,15 @@ export default class RoadLight extends Vue {
 	}
 
 	private calculate () {
-		//
+		this.leftLights.update(this.time);
+		this.rightLights.update(this.time);
+		this.time += 0.1;
 	}
 
 	private animate () {
-		// this.calculate();
+		this.calculate();
 		this.renderer.render(this.scene, this.camera);
-		// this.timeout = window.setTimeout(() => { this.animate(); }, this.framerate);
+		this.timeout = window.setTimeout(() => { this.animate(); }, this.framerate);
 	}
 }
 </script>
