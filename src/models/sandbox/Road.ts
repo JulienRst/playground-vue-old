@@ -24,7 +24,7 @@ export default class Road {
 			fragmentShader,
 			vertexShader,
 			uniforms: {
-				uColor: new THREE.Uniform(new THREE.Color(0x333333))
+				uColor: new THREE.Uniform(new THREE.Color(0x222222))
 			}
 		});
 

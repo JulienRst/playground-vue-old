@@ -46,7 +46,7 @@ export default class CarLights {
 		// const sectionWidth = this.options.roadWidth / 2;
 
 		for (let i = 0; i < this.options.n; i++) {
-			const radius = 1.;
+			const radius = 2.;
 			const section = i % 3;
 			const sectionX = section * sectionWidth - this.options.roadWidth / 2 + sectionWidth / 2;
 			const carWidth = 0.5 * sectionWidth;

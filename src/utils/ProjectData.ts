@@ -5,6 +5,7 @@ import SolutionComponent from '@/components/sandbox/Solution.vue';
 import NormalVertexPartyComponent from '@/components/sandbox/NormalVertexParty.vue';
 import TunnelComponent from '@/components/sandbox/Tunnel.vue';
 import RoadLightComponent from '@/components/sandbox/RoadLight.vue';
+import TestAbbealComponent from '@/components/sandbox/TestAbbeal.vue';
 
 const projects = [
 	new Project(

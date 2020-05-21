@@ -1,5 +1,5 @@
 <template>
-	<div class="render" id="road-light-render"></div>
+	<div class="render" id="road-light-render" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
 </template>
 
 <script lang="ts">
@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import WindowControl from '@/utils/WindowControl';
 import Road from '@/models/sandbox/Road';
 import CarLights from '@/models/sandbox/CarLights';
+import lerp from '@/utils/Lerp';
 
 @Component({
 	name: 'RoadLight'
@@ -32,6 +33,11 @@ export default class RoadLight extends Vue {
 	private roadDepth = 400;
 	private numberOfLights = 40;
 	private gutter = 2;
+	// Animation
+	private speedUpTarget = 0;
+	private speedUp = 0;
+	private timeOffset = 0;
+	private fovTarget = 90;
 
 
 	public mounted () {
@@ -62,9 +68,18 @@ export default class RoadLight extends Vue {
 		}
 	}
 
+	public onMouseDown () {
+		this.speedUpTarget = 0.5;
+		this.fovTarget = 140;
+	}
+
+	public onMouseUp () {
+		this.speedUpTarget = 0;
+		this.fovTarget = 90;
+	}
+
 	private setCamera () {
-		this.camera.position.set(0, 10, this.roadDepth / 3);
-		this.camera.lookAt(0, 0, 0);
+		this.camera.position.set(0, 10, this.roadDepth / 4);
 	}
 
 	private setSize () {
@@ -86,7 +101,7 @@ export default class RoadLight extends Vue {
 			roadDepth: this.roadDepth,
 			roadSections: 6,
 			color: new THREE.Color(0xFAFAFA),
-			speed: -80
+			speed: -40
 		});
 		this.rightLights = new CarLights({
 			n: this.numberOfLights,
@@ -94,7 +109,7 @@ export default class RoadLight extends Vue {
 			roadDepth: this.roadDepth,
 			roadSections: 6,
 			color: new THREE.Color(0xFF102A),
-			speed: 80
+			speed: 40
 		});
 		this.leftLights.init();
 		this.rightLights.init();
@@ -112,9 +127,25 @@ export default class RoadLight extends Vue {
 	}
 
 	private calculate () {
-		this.leftLights.update(this.time);
-		this.rightLights.update(this.time);
+		this.speedUp += lerp(
+			this.speedUp,
+			this.speedUpTarget,
+			0.1,
+			0.00001
+		);
+		this.timeOffset += this.speedUp;
 		this.time += 0.1;
+
+		const elapsedTime = this.time + this.timeOffset;
+
+		const fovChange = lerp(this.camera.fov, this.fovTarget, 0.1, 0.00001);
+		if (fovChange !== 0) {
+			this.camera.fov += fovChange;
+			this.camera.updateProjectionMatrix();
+		}
+
+		this.leftLights.update(elapsedTime);
+		this.rightLights.update(elapsedTime);
 	}
 
 	private animate () {
