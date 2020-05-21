@@ -13,6 +13,8 @@ export const vertexShader = `
 	uniform float uSpeed;
 	uniform float uTravelLength;
 
+	#include
+
 	void main () {
 		vec3 transformed = position.xyz;
 
@@ -25,11 +27,12 @@ export const vertexShader = `
 
 		// 2. Place them
 		float zOffset = uTime * uSpeed + aOffset.z;
-		zOffset = mod(zOffset, uTravelLength) - uTravelLength / 2.;
+		zOffset = length - mod(zOffset, uTravelLength);
 		transformed.z += zOffset;
 		transformed.xy += aOffset.xy;
 
-		// 2. Move the tubes
+		float progress = abs(transformed.z / uTravelLength);
+		transformed.xyz += getDistortion(progress);
 
 		vec4 mvPosition = modelViewMatrix * vec4(transformed, 1.);
 		gl_Position = projectionMatrix * mvPosition;
