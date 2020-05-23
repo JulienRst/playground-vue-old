@@ -81,7 +81,7 @@ const projects = [
 		RoadLightComponent,
 		{
 			date: 'Mai 2020',
-			technos: ['Three.js', 'Vue.js'],
+			technos: ['Three.js', 'Vue.js', 'Shader'],
 			inspirations: [{
 				link: 'https://tympanus.net/Tutorials/InfiniteLights/',
 				name: 'Codrops'

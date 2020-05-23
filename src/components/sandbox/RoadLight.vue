@@ -55,6 +55,13 @@ export default class RoadLight extends Vue {
 		this.setSize();
 		this.setCamera();
 
+		const fog = new THREE.Fog(
+			0x000000,
+			this.roadDepth * 0.2,
+			this.roadDepth * 500
+		);
+		this.scene.fog = fog;
+
 		// Init Dom
 		if (target) {
 			target.appendChild(this.renderer.domElement);

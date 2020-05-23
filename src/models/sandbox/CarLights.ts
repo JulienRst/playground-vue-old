@@ -2,6 +2,10 @@ import * as THREE from 'three';
 import { fragmentShader, vertexShader } from '@/models/sandbox/shaders/carlight';
 import { myCustomDistortion } from '@/utils/Distortion';
 
+const pickRandom = (arr: any) => {
+	return (Array.isArray(arr)) ? arr[Math.floor(Math.random() * arr.length)] : arr;
+};
+
 export interface CarLightsOptions {
 	color: THREE.Color;
 	n: number;
@@ -33,6 +37,9 @@ export default class CarLights {
 		const aOffset = [];
 		// Manage Size
 		const aMetrics = [];
+		// Manage Color
+		const aColor = [];
+
 		const sectionWidth = this.options.roadWidth / this.options.roadSections;
 
 		for (let i = 0; i < this.options.n; i++) {
@@ -58,6 +65,15 @@ export default class CarLights {
 			aMetrics.push(length);
 			aMetrics.push(radius);
 			aMetrics.push(length);
+
+			const color = pickRandom(this.options.color);
+			aColor.push(color.r);
+			aColor.push(color.g);
+			aColor.push(color.b);
+
+			aColor.push(color.r);
+			aColor.push(color.g);
+			aColor.push(color.b);
 		}
 
 		instanced.setAttribute(
@@ -70,15 +86,23 @@ export default class CarLights {
 			new THREE.InstancedBufferAttribute(new Float32Array(aMetrics), 2, false)
 		);
 
+		instanced.setAttribute(
+			'aColor',
+			new THREE.InstancedBufferAttribute(new Float32Array(aColor), 3, false)
+		);
+
 		const material = new THREE.ShaderMaterial({
 			fragmentShader,
 			vertexShader,
 			uniforms: Object.assign(
 				{
-					uColor: new THREE.Uniform(this.options.color),
 					uTime: new THREE.Uniform(0),
 					uSpeed: new THREE.Uniform(this.options.speed),
-					uTravelLength: new THREE.Uniform(this.options.roadDepth)
+					uTravelLength: new THREE.Uniform(this.options.roadDepth),
+					uFade: new THREE.Uniform(new THREE.Vector2(0, 0)),
+					fogNear: new THREE.Uniform(this.options.roadDepth * 0.1),
+					fogFar: new THREE.Uniform(this.options.roadDepth * 2),
+					fogColor: new THREE.Uniform(new THREE.Color(0x000000))
 				},
 				myCustomDistortion.uniforms
 			)
