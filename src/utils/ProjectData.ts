@@ -4,6 +4,8 @@ import TriangleComponent from '@/components/sandbox/Triangle.vue';
 import SolutionComponent from '@/components/sandbox/Solution.vue';
 import NormalVertexPartyComponent from '@/components/sandbox/NormalVertexParty.vue';
 import TunnelComponent from '@/components/sandbox/Tunnel.vue';
+import RoadLightComponent from '@/components/sandbox/RoadLight.vue';
+import TestAbbealComponent from '@/components/sandbox/TestAbbeal.vue';
 
 const projects = [
 	new Project(
@@ -70,6 +72,21 @@ const projects = [
 				name: 'Codrops'
 			}],
 			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/Tunnel.vue'
+		},
+		true
+	),
+	new Project(
+		6,
+		'Road Light',
+		RoadLightComponent,
+		{
+			date: 'Mai 2020',
+			technos: ['Three.js', 'Vue.js', 'Shader'],
+			inspirations: [{
+				link: 'https://tympanus.net/Tutorials/InfiniteLights/',
+				name: 'Codrops'
+			}],
+			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/RoadLight.vue'
 		},
 		false
 	)
