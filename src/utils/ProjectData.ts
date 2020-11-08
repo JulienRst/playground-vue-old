@@ -5,7 +5,7 @@ import SolutionComponent from '@/components/sandbox/Solution.vue';
 import NormalVertexPartyComponent from '@/components/sandbox/NormalVertexParty.vue';
 import TunnelComponent from '@/components/sandbox/Tunnel.vue';
 import RoadLightComponent from '@/components/sandbox/RoadLight.vue';
-import TestAbbealComponent from '@/components/sandbox/TestAbbeal.vue';
+import InceptCardComponent from '@/components/sandbox/InceptCard.vue';
 
 const projects = [
 	new Project(
@@ -89,6 +89,20 @@ const projects = [
 			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/RoadLight.vue'
 		},
 		false
+	),
+	new Project(
+		7,
+		'InceptCard',
+		InceptCardComponent,
+		{
+			date: 'November 2020',
+			technos: ['Three.js', 'Vue.js'],
+			inspirations: [{
+				link: 'https://twitter.com/robbietilton/status/1325099751746932738',
+				name: 'Robbie Tilton\'s Trading Card'
+			}],
+			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/InceptCard.vue'
+		}
 	)
 ];
 
