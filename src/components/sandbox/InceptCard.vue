@@ -51,6 +51,7 @@ export default class InceptCard extends Vue {
 		// Init Dom
 		if (target) {
 			target.appendChild(this.renderer.domElement);
+			this.initMainLight();
 			this.initCard();
 			this.initImage();
 			this.animate();
@@ -80,22 +81,60 @@ export default class InceptCard extends Vue {
 		this.renderer.setSize(this.screenSize.w, this.screenSize.h);
 	}
 
+	private initMainLight () {
+		const AL = new THREE.AmbientLight(0xffffff, 1);
+		const DL = new THREE.PointLight(0xffffff, 7);
+		DL.position.set(-10, 3, 10);
+		DL.lookAt(0, 0, 0);
+		this.scene.add(AL);
+		this.scene.add(DL);
+	}
+
 	private initCard () {
 		this.card = new THREE.Group();
+		// Base Shape
 		const baseShape = createRoundedRect(-2, -3, 4, 6, 0.25);
 		const baseGeo = new THREE.ShapeGeometry(baseShape);
-		const baseMat = new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.DoubleSide });
+		const baseMat = new THREE.MeshBasicMaterial({ color: 0xbdc3c7, side: THREE.DoubleSide });
 		const base = new THREE.Mesh(baseGeo, baseMat);
+		this.card.add(base);
+		// Image container
 		const imageGeo = new THREE.PlaneGeometry(3.5, 3.5);
 		this.renderTarget = new THREE.WebGLRenderTarget(2048, 2048);
 		const imageMat = new MeshBasicMaterial({ map: this.renderTarget.texture });
 		const image = new THREE.Mesh(imageGeo, imageMat);
 		image.position.y = 1;
 		image.position.z = 0.001; // Avoid clipping
-		this.card.add(base);
 		this.card.add(image);
+		// Encart
+		const encartShape = createRoundedRect(1.25, -1, 0.75, 0.75, 0.25);
+		const encartGeo = new THREE.ShapeGeometry(encartShape);
+		const encartMat = new THREE.MeshBasicMaterial({ color: 0xbdc3c7 });
+		const encart = new THREE.Mesh(encartGeo, encartMat);
+		encart.position.z = 0.0015; // Avoid clipping
+		this.card.add(encart);
+		// Text
+		const loader = new THREE.FontLoader();
+		loader.load('/fonts/Lato_Bold.json', (font) => {
+			const textGeo = new THREE.TextGeometry('12', {
+				font,
+				size: 0.3,
+				height: 0.001
+			});
+			const textMat = new THREE.MeshStandardMaterial({
+				color: 0x101010,
+				roughness: 0.8,
+				metalness: 0.7
+			});
+			const textMesh = new THREE.Mesh(textGeo, textMat);
+			textMesh.position.z = 0.002;
+			textMesh.position.x = 1.32;
+			textMesh.position.y = -0.72;
+			this.card.add(textMesh);
+		});
 		this.scene.add(this.card);
 		this.card.rotation.z = 0.2;
+		this.card.rotation.y = 0.3;
 	}
 
 	private initImage () {

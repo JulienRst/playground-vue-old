@@ -102,7 +102,8 @@ const projects = [
 				name: 'Robbie Tilton\'s Trading Card'
 			}],
 			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/InceptCard.vue'
-		}
+		},
+		false
 	)
 ];
 
