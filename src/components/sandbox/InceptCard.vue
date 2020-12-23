@@ -27,9 +27,11 @@ export default class InceptCard extends Vue {
 	private screenSize!: { w: number, h: number, ratio: number };
 	private framerate = 1000 / 30;
 	private isDebug = false;
-	// Dummy
+	// Element
 	private card!: THREE.Group;
 	private image!: THREE.Group;
+	private imageDl!: THREE.PointLight;
+
 
 
 	public mounted () {
@@ -116,21 +118,19 @@ export default class InceptCard extends Vue {
 		// Text
 		const loader = new THREE.FontLoader();
 		loader.load('/fonts/Lato_Bold.json', (font) => {
-			const textGeo = new THREE.TextGeometry('12', {
-				font,
-				size: 0.3,
-				height: 0.001
-			});
+			const titleGeo = new THREE.TextGeometry('Magic Ball', { font, size: 0.3, height: 0.001 });
+			const textGeo = new THREE.TextGeometry('12', { font, size: 0.3, height: 0.001 });
 			const textMat = new THREE.MeshStandardMaterial({
 				color: 0x101010,
 				roughness: 0.8,
 				metalness: 0.7
 			});
 			const textMesh = new THREE.Mesh(textGeo, textMat);
-			textMesh.position.z = 0.002;
-			textMesh.position.x = 1.32;
-			textMesh.position.y = -0.72;
+			const titleMesh = new THREE.Mesh(titleGeo, textMat);
+			textMesh.position.set(1.32, -0.72, 0.002);
+			titleMesh.position.set(-0.8, -1.4, 0.002);
 			this.card.add(textMesh);
+			this.card.add(titleMesh);
 		});
 		this.scene.add(this.card);
 		this.card.rotation.z = 0.2;
@@ -138,20 +138,20 @@ export default class InceptCard extends Vue {
 	}
 
 	private initImage () {
-		const sphereGeo = new THREE.BoxGeometry(2, 2, 2);
-		const sphereMat = new THREE.MeshStandardMaterial({ color: 0xff0000, wireframe: false });
+		const sphereGeo = new THREE.SphereGeometry(2, 32, 32);
+		const sphereMat = new THREE.MeshStandardMaterial({ color: 0xff00ff });
 		const light = new THREE.AmbientLight(0xffffff, 0.2);
-		const dl = new THREE.PointLight(0xffffff, 1);
-		dl.position.set(5, 5, -10);
-		const box = new THREE.Mesh(sphereGeo, sphereMat);
+		this.imageDl = new THREE.PointLight(0xffffff, 1);
+		this.imageDl.position.set(5, 5, -10);
+		const sphere = new THREE.Mesh(sphereGeo, sphereMat);
 		this.image = new THREE.Group();
-		this.image.add(box);
-		const plan = new THREE.PlaneGeometry(3, 3);
-		const matStatic = new THREE.MeshStandardMaterial({ color: 0x000fff, side: THREE.DoubleSide });
-		const planMesh = new THREE.Mesh(plan, matStatic);
-		this.image.add(planMesh);
+		this.image.add(sphere);
+		// const plan = new THREE.PlaneGeometry(3, 3);
+		// const matStatic = new THREE.MeshStandardMaterial({ color: 0x000fff, side: THREE.DoubleSide });
+		// const planMesh = new THREE.Mesh(plan, matStatic);
+		// this.image.add(planMesh);
 		this.imageScene.add(light);
-		this.imageScene.add(dl);
+		this.imageScene.add(this.imageDl);
 		this.imageScene.add(this.image);
 	}
 
@@ -159,8 +159,10 @@ export default class InceptCard extends Vue {
 		const rotationCard = (this.card.rotation.y + Math.PI) % (2 * Math.PI) - Math.PI;
 		this.imageCamera.position.x = rotationCard * Math.PI;
 		this.imageCamera.position.z = 20 + (10 -  this.imageCamera.position.x );
-		this.image.rotation.x += 0.1;
-		this.image.rotation.y += 0.1;
+		this.imageDl.position.set(Math.cos(rotationCard - Math.PI / 2) * 5, 5, Math.sin(rotationCard - Math.PI / 2) * -10);
+		this.imageDl.lookAt(0, 0, 0);
+		// this.image.rotation.x += 0.1;
+		// this.image.rotation.y += 0.1;
 		this.card.rotation.y += 0.02;
 	}
 
