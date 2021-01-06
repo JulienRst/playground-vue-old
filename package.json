@@ -10,7 +10,7 @@
   "dependencies": {
     "@types/slug": "^0.9.1",
     "@types/three": "^0.103.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.4.4",
     "raw-loader": "^4.0.0",
     "slug": "^2.1.1",
