@@ -7,6 +7,7 @@ import TunnelComponent from '@/components/sandbox/Tunnel.vue';
 import RoadLightComponent from '@/components/sandbox/RoadLight.vue';
 import InceptCardComponent from '@/components/sandbox/InceptCard.vue';
 import Stroke2SquareComponent from '@/components/sandbox/Stroke2Square.vue';
+import TheSoundYouNeedComponent from '@/components/sandbox/TheSoundYouNeed.vue';
 
 const projects = [
 	new Project(
@@ -120,6 +121,17 @@ const projects = [
 			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/Stroke2Square.vue'
 		},
 		false
+	),
+	new Project(
+		9,
+		'The Sound You Need',
+		TheSoundYouNeedComponent,
+		{
+			date: 'May 2021',
+			technos: ['Three.js', 'Vue.js', 'AudioContext'],
+			inspirations: [],
+			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/TheSoundYouNeed.vue'
+		}
 	)
 ];
 

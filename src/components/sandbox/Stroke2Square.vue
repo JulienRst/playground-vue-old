@@ -29,7 +29,6 @@ export default class Stroke2Square extends Vue {
 	private clock = new THREE.Clock(true);
 	private speed = 1.2;
 
-
 	public mounted () {
 		const target: HTMLElement|null = document.querySelector('#stroke2square-render');
 		// Init Utils
