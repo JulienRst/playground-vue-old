@@ -6,6 +6,7 @@ import NormalVertexPartyComponent from '@/components/sandbox/NormalVertexParty.v
 import TunnelComponent from '@/components/sandbox/Tunnel.vue';
 import RoadLightComponent from '@/components/sandbox/RoadLight.vue';
 import InceptCardComponent from '@/components/sandbox/InceptCard.vue';
+import Stroke2SquareComponent from '@/components/sandbox/Stroke2Square.vue';
 
 const projects = [
 	new Project(
@@ -102,6 +103,21 @@ const projects = [
 				name: 'Robbie Tilton\'s Trading Card'
 			}],
 			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/InceptCard.vue'
+		},
+		false
+	),
+	new Project(
+		8,
+		'Dimension(s)',
+		Stroke2SquareComponent,
+		{
+			date: 'April 2021',
+			technos: ['Three.js', 'Vue.js'],
+			inspirations: [{
+				link: 'https://twitter.com/mattdesl/status/1381373529980084226',
+				name: 'Matt DesLauriers',
+			}],
+			source: 'https://github.com/JulienRst/Playgournd/blob/master/src/components/sandbox/Stroke2Square.vue'
 		},
 		false
 	)
