@@ -4,8 +4,7 @@
 		<section>
 			<article>
 				<p>Hi, my name is Julien Rousset and i'm a french <strong>Creative Developer</strong>, currently based in Paris.</p>
-				<p>Working as an <strong>Experienced Front End Developer</strong> at <strong>onepoint</strong>.</p>
-				<p>I'm currently working with <strong><a href="https://matters.tech/en/" target="_blank">Matters</a></strong>.</p>
+				<p>Working as an <strong>Experienced Front End Developer</strong> at <strong><a href="https://matters.tech/en/" target="_blank">Matters</a></strong>.</p>
 			</article>
 			<article>
 				<p>julien.rousset01[at]gmail[dot]com</p>
