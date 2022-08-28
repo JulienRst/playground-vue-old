@@ -33,7 +33,8 @@ const projects = [
 			technos: ['Three.js', 'Vue.js'],
 			inspirations: [],
 			source: 'https://github.com/JulienRst/Playground/blob/master/src/components/sandbox/Triangle.vue'
-		}
+		},
+		false
 	),
 	new Project(
 		3,

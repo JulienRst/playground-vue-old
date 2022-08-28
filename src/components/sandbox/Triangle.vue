@@ -20,7 +20,7 @@ export default class TriangleComponent extends Vue {
 	private windowControl!: WindowControl;
 	private screenSize!: { w: number, h: number, ratio: number };
 	private sceneSize: { w: number, h: number } = { w: 0, h: 0 };
-	private time: number = 0;
+	private time: number = -0.025;
 
 	// Params
 	private frameRate = 1000 / 30;
@@ -41,6 +41,7 @@ export default class TriangleComponent extends Vue {
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera(60, this.screenSize.ratio, 0.1, 500);
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		this.renderer.setPixelRatio(window.devicePixelRatio);
 		// Add Alpha
 		this.renderer.setClearColor(0xffffff, 0);
 		this.setSize();
@@ -66,7 +67,7 @@ export default class TriangleComponent extends Vue {
 	}
 
 	private setCamera () {
-		this.camera.position.set(0, 0, 10);
+		this.camera.position.set(0, 0, 5);
 		this.camera.lookAt(0, 0, 0);
 	}
 
@@ -113,7 +114,7 @@ export default class TriangleComponent extends Vue {
 		if (this.time > Math.PI / 110 || this.time < - Math.PI / 110) { this.direction = -this.direction; }
 		this.calculate();
 		this.renderer.render(this.scene, this.camera);
-		this.timeout = window.setTimeout(() => { this.animate(); }, this.frameRate);
+		// this.timeout = window.setTimeout(() => { this.animate(); }, this.frameRate);
 	}
 }
 </script>
